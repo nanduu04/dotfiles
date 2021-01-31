@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[user]
+	name = nandu pokhrel
+	email = nandupokhrel@gmail.com
+# Please adapt and uncomment the following lines:
+#	name = nandu pokhrel
+#	email = nandupokhrel@MacBook-Pro.local
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[user "url.git@github.com:"]
+	insteadOf = https://github.com/
+[color]
+	ui = true
+[core]
+	editor = emacs

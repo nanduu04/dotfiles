@@ -1,0 +1,102 @@
+0 verbose cli [
+0 verbose cli   '/usr/local/Cellar/node/15.5.0/bin/node',
+0 verbose cli   '/usr/local/bin/npm',
+0 verbose cli   'i',
+0 verbose cli   'sweetalert'
+0 verbose cli ]
+1 info using npm@7.3.0
+2 info using node@v15.5.0
+3 timing config:load:defaults Completed in 1ms
+4 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 3ms
+5 timing config:load:builtin Completed in 3ms
+6 timing config:load:cli Completed in 1ms
+7 timing config:load:env Completed in 1ms
+8 timing config:load:file:/Users/nandupokhrel/Desktop/BookTrades-Web/.npmrc Completed in 0ms
+9 timing config:load:project Completed in 6ms
+10 timing config:load:file:/Users/nandupokhrel/.npmrc Completed in 0ms
+11 timing config:load:user Completed in 0ms
+12 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+13 timing config:load:global Completed in 0ms
+14 timing config:load:cafile Completed in 1ms
+15 timing config:load:validate Completed in 1ms
+16 timing config:load:setUserAgent Completed in 1ms
+17 timing config:load:setEnvs Completed in 0ms
+18 timing config:load Completed in 15ms
+19 verbose npm-session c4ac48decbfd8d1d
+20 timing npm:load Completed in 25ms
+21 timing arborist:ctor Completed in 1ms
+22 timing idealTree:init Completed in 824ms
+23 timing idealTree:userRequests Completed in 4ms
+24 silly idealTree buildDeps
+25 silly fetch manifest sweetalert@^2.1.2
+26 timing arborist:ctor Completed in 0ms
+27 http fetch GET 200 https://registry.npmjs.org/sweetalert 697ms
+28 timing idealTree:#root Completed in 702ms
+29 timing idealTree:buildDeps Completed in 703ms
+30 timing idealTree:fixDepFlags Completed in 26ms
+31 timing idealTree Completed in 1581ms
+32 timing reify:loadTrees Completed in 1581ms
+33 timing reify:diffTrees Completed in 30ms
+34 silly reify mark retired [
+34 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/jest',
+34 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/jest'
+34 silly reify ]
+35 silly reify mark retired [
+35 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/json5',
+35 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/json5'
+35 silly reify ]
+36 silly reify mark retired [
+36 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/react-dev-utils/node_modules/which',
+36 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/react-dev-utils/node_modules/.bin/node-which'
+36 silly reify ]
+37 silly reify mark retired [
+37 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/semver',
+37 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/semver'
+37 silly reify ]
+38 silly reify mark retired [
+38 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/which',
+38 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/which'
+38 silly reify ]
+39 silly reify moves {
+39 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/jest': '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.jest-gFSHdTNR',
+39 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/jest': '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/.jest-iy4yYCSh',
+39 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/json5': '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.json5-wgsUpvtq',
+39 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/json5': '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/.json5-9TKTTsNv',
+39 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/react-dev-utils/node_modules/which': '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/react-dev-utils/node_modules/.which-P8l6GB17',
+39 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/react-dev-utils/node_modules/.bin/node-which': '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/react-dev-utils/node_modules/.bin/.node-which-MFRrSPGW',
+39 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/semver': '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.semver-SMgWua8J',
+39 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/semver': '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/.semver-nxcONRnF',
+39 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/which': '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.which-RiTl0UEW',
+39 silly reify   '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/which': '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/.bin/.which-4DcCvWBx'
+39 silly reify }
+40 timing reify:retireShallow Completed in 9ms
+41 timing reify:createSparse Completed in 2ms
+42 timing reify:loadBundles Completed in 0ms
+43 timing reifyNode:node_modules/react-dev-utils/node_modules/which Completed in 46ms
+44 timing reifyNode:node_modules/which Completed in 48ms
+45 timing reifyNode:node_modules/jest Completed in 47ms
+46 timing reifyNode:node_modules/semver Completed in 48ms
+47 timing reifyNode:node_modules/json5 Completed in 52ms
+48 timing reify:unpack Completed in 53ms
+49 timing reify:unretire Completed in 3ms
+50 timing build:queue Completed in 2ms
+51 timing build:link:node_modules/jest Completed in 4ms
+52 timing build:link:node_modules/which Completed in 3ms
+53 timing build:link:node_modules/json5 Completed in 3ms
+54 timing build:link:node_modules/react-dev-utils/node_modules/which Completed in 2ms
+55 timing reify:rollback:createSparse Completed in 19ms
+56 timing reify:rollback:retireShallow Completed in 9ms
+57 timing command:install Completed in 1727ms
+58 verbose stack Error: ENOENT: no such file or directory, chmod '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/semver/bin/semver'
+59 verbose cwd /Users/nandupokhrel/Desktop/BookTrades-Web
+60 verbose Darwin 20.2.0
+61 verbose argv "/usr/local/Cellar/node/15.5.0/bin/node" "/usr/local/bin/npm" "i" "sweetalert"
+62 verbose node v15.5.0
+63 verbose npm  v7.3.0
+64 error code ENOENT
+65 error syscall chmod
+66 error path /Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/semver/bin/semver
+67 error errno -2
+68 error enoent ENOENT: no such file or directory, chmod '/Users/nandupokhrel/Desktop/BookTrades-Web/node_modules/semver/bin/semver'
+69 error enoent This is related to npm not being able to find a file.
+70 verbose exit -2
