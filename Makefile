@@ -7,7 +7,7 @@ export XDG_CONFIG_HOME = $(HOME)/.config
 export STOW_DIR = $(DOTFILES_DIR)
 export ACCEPT_EULA=Y
 
-.PHONY: test
+.PHONY: all macos linux core-macos core-linux stow-macos stow-linux sudo packages link unlink brew bash git npm ruby brew-packages cask-apps vscode-extensions test help
 
 all: $(OS)
 
@@ -34,20 +34,31 @@ ifndef GITHUB_ACTION
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 endif
 
-packages: brew-packages cask-apps node-packages
+packages: brew-packages cask-apps vscode-extensions
 
 link: stow-$(OS)
-	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
-		mv -v $(HOME)/$$FILE{,.bak}; fi; done
-	mkdir -p $(XDG_CONFIG_HOME)
-	stow -t $(HOME) runcom
-	stow -t $(XDG_CONFIG_HOME) config
+	@echo "Creating backup of existing dotfiles..."
+	@for FILE in $$(\ls -A runcom); do \
+		if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then \
+			mv -v $(HOME)/$$FILE{,.bak}; \
+		fi \
+	done
+	@mkdir -p $(XDG_CONFIG_HOME)
+	@echo "Linking dotfiles..."
+	@stow -t $(HOME) runcom
+	@stow -t $(XDG_CONFIG_HOME) config
+	@echo "Dotfiles linked successfully!"
 
 unlink: stow-$(OS)
-	stow --delete -t $(HOME) runcom
-	stow --delete -t $(XDG_CONFIG_HOME) config
-	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE.bak ]; then \
-		mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
+	@echo "Unlinking dotfiles..."
+	@stow --delete -t $(HOME) runcom
+	@stow --delete -t $(XDG_CONFIG_HOME) config
+	@for FILE in $$(\ls -A runcom); do \
+		if [ -f $(HOME)/$$FILE.bak ]; then \
+			mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; \
+		fi \
+	done
+	@echo "Dotfiles unlinked successfully!"
 
 brew:
 	is-executable brew || curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash
@@ -85,11 +96,33 @@ brew-packages: brew
 cask-apps: brew
 	brew bundle --file=$(DOTFILES_DIR)/install/Caskfile || true
 	defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/hammerspoon/init.lua"
-	for EXT in $$(cat install/Codefile); do code --install-extension $$EXT; done
-	xattr -d -r com.apple.quarantine ~/Library/QuickLook
 
-node-packages: npm
-	. $(NVM_DIR)/nvm.sh; npm install -g $(shell cat install/npmfile)
+vscode-extensions:
+	@echo "Installing VS Code extensions..."
+	@if [ -f "$(DOTFILES_DIR)/install/Codefile" ]; then \
+		while read -r extension; do \
+			if [[ ! "$$extension" =~ ^#.*$ ]]; then \
+				code --install-extension "$$extension" || true; \
+			fi \
+		done < "$(DOTFILES_DIR)/install/Codefile"; \
+	fi
+	@echo "VS Code extensions installed successfully!"
 
 test:
 	. $(NVM_DIR)/nvm.sh; bats test
+
+# Help
+help:
+	@echo "Available commands:"
+	@echo "  make all        - Install everything for your OS"
+	@echo "  make macos      - Install everything for macOS"
+	@echo "  make linux      - Install everything for Linux"
+	@echo "  make link       - Link dotfiles to home directory"
+	@echo "  make unlink     - Unlink dotfiles from home directory"
+	@echo "  make packages   - Install all packages"
+	@echo "  make brew       - Install Homebrew"
+	@echo "  make git        - Install Git and Git extras"
+	@echo "  make npm        - Install NVM and latest LTS Node.js"
+	@echo "  make ruby       - Install Ruby"
+	@echo "  make test       - Run tests"
+	@echo "  make help       - Show this help message"

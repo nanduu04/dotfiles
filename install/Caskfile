@@ -1,0 +1,27 @@
+# Development Tools
+cask "visual-studio-code"
+cask "iterm2"
+cask "alfred"
+cask "rectangle"
+cask "karabiner-elements"
+cask "hammerspoon"
+cask "docker"
+cask "postman"
+cask "slack"
+
+# Browsers
+cask "google-chrome"
+cask "firefox"
+cask "brave-browser"
+
+# Media
+cask "spotify"
+cask "vlc"
+
+# Utilities
+cask "the-unarchiver"
+cask "appcleaner"
+cask "rectangle"
+cask "raycast"
+cask "notion"
+cask "obsidian" 

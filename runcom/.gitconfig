@@ -1,0 +1,132 @@
+
+# Basic aliases
+[alias]
+	# Add commands
+	a = add
+	aa = add -A
+	ai = add -i
+	ap = add -p
+
+	# Branch commands
+	b = branch --sort=-committerdate
+	bc = branch-current
+	bcv = "!git branch | grep $(git branch-current)"
+	branch-current = rev-parse --abbrev-ref HEAD
+	branch-m = "!stat .git/refs/heads/main >/dev/null 2>/dev/null; [[ $? -eq 0 ]] && echo main || echo master"
+	branch-x = "!stat .git/refs/heads/develop > /dev/null 2> /dev/null; [[ $? -eq 0 ]] && echo develop || echo $(git branch-m)"
+
+	# Commit commands
+	ci = commit
+	cia = commit --amend
+	cianv = commit --amend --no-verify
+	ciwip = commit -m 'WIP' --no-verify
+
+	# Checkout commands
+	co = "!git fetch && git checkout"
+	cob = checkout -b
+	cobx = "!f() { git fetch && git checkout origin/$(git branch-new) && git checkout -b $1; }; f"
+	cod = checkout develop
+	cood = checkout origin/develop
+	com = "!git checkout $(git branch-m)"
+	coom = "!git checkout origin/$(git branch-m)"
+	coma = checkout main
+	codbb = checkout develop-bbrowning
+	combb = !"git checkout $(git branch-m)-bbrowning"
+	cop = "!git-checkout-fzf"
+	cobp = "!git-checkout-branch-fzf"
+	cox = "!git checkout $(git branch-x)"
+	coox = "!git checkout origin/$(git branch-x)"
+
+	# Cherry-pick commands
+	cp = cherry-pick
+	cpa = cherry-pick --abort
+	cpc = cherry-pick --continue
+	cpp = "!git-cherry-pick-fzf"
+
+	# Diff commands
+	d = diff
+	dbc = "!git diff HEAD origin/$(git branch-current)"
+	dob = "!git diff origin/$(git branch-current) $(git branch-current)"
+	dod = diff origin/develop..HEAD
+	dom = "!git fetch && git diff origin/$(git branch-m)..HEAD"
+	ddbb = diff develop-bbrowning..HEAD
+	d1 = diff HEAD^..HEAD
+	d2 = diff HEAD^^..HEAD
+	d21 = diff HEAD^^..HEAD^
+	d3 = diff HEAD^^^..HEAD
+	d32 = diff HEAD^^^..HEAD^^
+	dc = diff --cached
+	dt = difftool
+
+	# Fetch commands
+	f = fetch --all --tags --force
+	fh = "!f() { git log -L "1,999999:$1"; }; f"
+
+	# Log commands
+	lg = "!f() { git lga $@ | head -n 20; }; f"
+	lg50 = "!f() { git lga $@ | head -n 50; }; f"
+	lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --color=always
+
+	# Merge commands
+	m = merge
+	ma = merge --abort
+
+	# Push commands
+	p = push
+	pf = push --force-with-lease
+	pfnv = push --force-with-lease --no-verify
+	pfo = "!f() { git push --force-with-lease --set-upstream origin $(git branch-current) $@ && open \"https://github.com/$(git remote -v | grep '(push)' | cut -d ':' -f 2 | cut -d . -f 1 | cut -d ' ' -f 1)/compare/$(git branch-current)?expand=1\"; }; f"
+	pfonv = "!git pfo --no-verify"
+	pnv = push --no-verify
+	po = "!f() { git push --set-upstream origin $(git branch-current) $@ && git pr || echo -ne '\\007'; }; f"
+	ponv = "!git po --no-verify"
+
+	# Pull request commands
+	pr = "!f() { open \"https://github.com/$(git remote -v | grep '(push)' | cut -d ':' -f 2 | cut -d . -f 1 | cut -d ' ' -f 1)/compare/$(git branch-current)?expand=1\"; }; f"
+
+	# Pull commands
+	pu = pull
+
+	# Rebase commands
+	r = rebase
+	ra = rebase --abort
+	rc = rebase --continue
+	rhi = "!f() { git fetch && git reset --hard origin/$(git branch-current); }; f"
+	ri = rebase -i
+	ridbb = rebase -i develop-bbrowning
+	rimbb = "!git rebase -i $(git branch-m)-bbrowning"
+	riod = "!git fetch && git rebase -i origin/develop"
+	riom = "!git fetch && git rebase -i origin/$(git branch-m)"
+	riox = "!git fetch && git rebase -i origin/$(git branch-x)"
+	rioma = "!git fetch && git rebase -i origin/main"
+
+	# Reset commands
+	roll = reset --soft HEAD^
+
+	# Status commands
+	s = status
+
+	# Codeowners commands
+	sco = "!git-show-codeowners"
+	sco1 = "!git-show-codeowners HEAD^...HEAD"
+	sco2 = "!git-show-codeowners HEAD^^...HEAD"
+	sco3 = "!git-show-codeowners HEAD^^^...HEAD"
+	scor = "!f() { git show --name-only --pretty=\"\" ${1:-HEAD} | xargs codeowners; }; f"
+
+	# Stash commands
+	st = stash
+	stl = stash list
+	sts = stash show
+	stsp = stash show -p
+	stpo = stash pop
+	stpu = stash push
+
+	# Tag commands
+	tgp = "!f() { git tag $1 && git push origin tag $1; }; f"
+
+	# Wipe commands
+	wipe = "!git fetch && git reset --hard origin/$(git branch-current)"
+	wipex = "!git fetch && git reset --hard origin/$(git branch-x)"
+
+	# Custom commands
+	down = !bash -c '/Users/brandon.browning/code/git-down/git-down "$1"' -
